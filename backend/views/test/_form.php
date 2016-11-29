@@ -14,9 +14,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'test_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'test_img')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'test_desc')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'test_img')->widget('pjkui\kindeditor\Kindeditor',['clientOptions'=>['allowFileManager'=>'true','allowUpload'=>'true'],'editorType'=>'image-dialog']) ?>
+    
+    <?= $form->field($model, 'test_desc')->widget('pjkui\kindeditor\KindEditor',
+    ['clientOptions'=>['allowFileManager'=>'true',
+    'allowUpload'=>'true']]) 
+    ?>
 
     <?= $form->field($model, 'test_is_recommend')->textInput() ?>
 
