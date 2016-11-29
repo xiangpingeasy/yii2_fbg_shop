@@ -31,6 +31,7 @@
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
                     ['label' => 'Menu Yii3', 'options' => ['class' => 'header']],
+                    ['label' => '测试表', 'icon' => 'fa fa-file-code-o', 'url' => ['/test']],
                     ['label' => '用户管理', 'icon' => 'fa fa-file-code-o', 'url' => ['/user']],
                     ['label' => '原子商品', 'icon' => 'fa fa-file-code-o', 'url' => ['/goods']],
                     ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii']],
