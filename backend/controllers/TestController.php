@@ -28,6 +28,15 @@ class TestController extends Controller
             ],
         ];
     }
+    
+    public function actions()
+    {
+        return [
+            'Kupload' => [
+                'class' => 'pjkui\kindeditor\KindEditorAction',
+            ]
+        ];
+    }
 
     /**
      * Lists all Test models.
@@ -121,4 +130,6 @@ class TestController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    
+    
 }

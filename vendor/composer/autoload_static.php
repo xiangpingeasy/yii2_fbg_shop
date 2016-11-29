@@ -31,6 +31,7 @@ class ComposerStaticInitfcfa288df89d0761a1c62bfcf644b93e
         ),
         'p' => 
         array (
+            'pjkui\\kindeditor\\' => 17,
             'phpDocumentor\\Reflection\\' => 25,
         ),
         'd' => 
@@ -114,6 +115,10 @@ class ComposerStaticInitfcfa288df89d0761a1c62bfcf644b93e
         'rmrevin\\yii\\fontawesome\\' => 
         array (
             0 => __DIR__ . '/..' . '/rmrevin/yii2-fontawesome',
+        ),
+        'pjkui\\kindeditor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/pjkui/kindeditor',
         ),
         'phpDocumentor\\Reflection\\' => 
         array (

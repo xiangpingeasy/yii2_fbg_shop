@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b04011b0de58091c492410e959108ec7",
-    "content-hash": "b692ea0384f50456d8fe9ef6ab4f7ccc",
+    "hash": "95f5f0a393d88bd270baecac3d812bc5",
+    "content-hash": "ba6abb09e9eb5974e4eb0540dcaf39e2",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -489,6 +489,39 @@
                 "icon"
             ],
             "time": "2016-10-24 15:52:54"
+        },
+        {
+            "name": "pjkui/kindeditor",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pjkui/kindeditor.git",
+                "reference": "d09d1aa1928f8e656502e7af9824b315eff0b3d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pjkui/kindeditor/zipball/d09d1aa1928f8e656502e7af9824b315eff0b3d8",
+                "reference": "d09d1aa1928f8e656502e7af9824b315eff0b3d8",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "pjkui\\kindeditor\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Quinn Pan",
+                    "email": "pjkui@qq.com"
+                }
+            ],
+            "description": "desc",
+            "time": "2016-11-18 08:23:25"
         },
         {
             "name": "rmrevin/yii2-fontawesome",
@@ -3193,7 +3226,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "pjkui/kindeditor": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
