@@ -25,21 +25,20 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-index">
 
-    <h1><?= "<?= " ?>Html::encode($this->title) ?></h1>
 <?php if(!empty($generator->searchModelClass)): ?>
-<?= "    <?php " . ($generator->indexWidgetType === 'grid' ? "// " : "") ?>echo $this->render('_search', ['model' => $searchModel]); ?>
+<?= "    <?php " . ($generator->indexWidgetType === 'grid' ? " " : "") ?>echo $this->render('_search', ['model' => $searchModel]); ?>
 <?php endif; ?>
 
-    <p>
-        <?= "<?= " ?>Html::a(<?= $generator->generateString('Create ' . Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>, ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    
 <?= $generator->enablePjax ? '<?php Pjax::begin(); ?>' : '' ?>
 <?php if ($generator->indexWidgetType === 'grid'): ?>
     <?= "<?= " ?>GridView::widget([
         'dataProvider' => $dataProvider,
-        <?= !empty($generator->searchModelClass) ? "'filterModel' => \$searchModel,\n        'columns' => [\n" : "'columns' => [\n"; ?>
-            ['class' => 'yii\grid\SerialColumn'],
-
+        'layout'=>'{items}<div style="width:50%;float:left;">{summary}</div><div style="width:50%;float:left;"><div style="float:right;">{pager}</div></div><div style="clear:both;"></div>',
+        'summary'=>'当前第{page}/{pageCount}页 共{totalCount}条记录',
+        <?= !empty($generator->searchModelClass) ? "//'filterModel' => \$searchModel,\n        'columns' => [\n" : "'columns' => [\n"; ?>
+            //['class' => 'yii\grid\SerialColumn'],
+            //表字段
 <?php
 $count = 0;
 if (($tableSchema = $generator->getTableSchema()) === false) {
@@ -61,9 +60,32 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
     }
 }
 ?>
-
-            ['class' => 'yii\grid\ActionColumn'],
+            //操作按钮
+            [ 
+                'class' => 'yii\grid\ActionColumn',
+                'header' => '操作',
+                'headerOptions' => ['width' => '135','style'=>'text-align:center;'],
+                'template' => '<span style="display:inline-block;width:33%;text-align:center;">{view}</span><span style="display:inline-block;width:33%;text-align:center;">{update}</span><span style="display:inline-block;width:33%;text-align:center;">{delete}</span>',
+                'buttons' => [
+                    'view'=>function($url,$model,$key){
+                        return Html::a('查看', $url, ['title'=>'查看','class'=>'label label-info']);
+                    },
+                    'update'=>function($url,$model,$key){
+                        return Html::a('修改', $url, ['title'=>'修改','class'=>'label label-primary']);
+                    },
+                    'delete'=>function($url,$model,$key){
+                        return Html::a('删除', $url, ['title'=>'删除','class'=>'label label-danger','data-confirm'=>'你确定要删除吗？','data-method'=>'post','data-pjax'=>'1']);
+                    },
+                ],
+            ],
         ],
+        //分页按钮
+        'pager'=>[ 
+            'firstPageLabel'=>'首页', 
+            'prevPageLabel'=>'上一页', 
+            'nextPageLabel'=>'下一页', 
+            'lastPageLabel'=>'最后一页', 
+        ]
     ]); ?>
 <?php else: ?>
     <?= "<?= " ?>ListView::widget([
@@ -75,4 +97,7 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
     ]) ?>
 <?php endif; ?>
 <?= $generator->enablePjax ? '<?php Pjax::end(); ?>' : '' ?>
+    <p>
+        <?= "<?= " ?>Html::a(<?= $generator->generateString('添加') ?>, ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 </div>

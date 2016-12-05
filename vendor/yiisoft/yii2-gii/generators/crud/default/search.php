@@ -63,12 +63,14 @@ class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $m
      */
     public function search($params)
     {
-        $query = <?= isset($modelAlias) ? $modelAlias : $modelClass ?>::find();
+        $query = <?= isset($modelAlias) ? $modelAlias : $modelClass ?>::find();//默认按升序排列
+        //$query = <?= isset($modelAlias) ? $modelAlias : $modelClass ?>::find()->orderBy('id desc');//按降序，替换为本模型的id
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination'=>['pagesize'=>10]
         ]);
 
         $this->load($params);

@@ -32,6 +32,13 @@
                 'items' => [
                     ['label' => 'Menu Yii3', 'options' => ['class' => 'header']],
                     ['label' => '测试表', 'icon' => 'fa fa-file-code-o', 'url' => ['/test']],
+                    ['label' => '商品系列', 'icon' => 'fa fa-file-code-o', 'url' => ['/shop-goods-serial']],
+                    ['label' => '商品分类', 'icon' => 'fa fa-file-code-o', 'url' => ['/shop-goods-category']],
+                    ['label' => '商品类型', 'icon' => 'fa fa-file-code-o', 'url' => ['/shop-goods-type']],
+                    ['label' => '支付方式', 'icon' => 'fa fa-file-code-o', 'url' => ['/shop-payment']],
+                    ['label' => '配送方式', 'icon' => 'fa fa-file-code-o', 'url' => ['/shop-shipping']],
+                    ['label' => '商品品牌', 'icon' => 'fa fa-file-code-o', 'url' => ['/shop-goods-brand']],
+                    ['label' => '商品模型', 'icon' => 'fa fa-file-code-o', 'url' => ['/shop-goods-model']],
                     ['label' => '用户管理', 'icon' => 'fa fa-file-code-o', 'url' => ['/user']],
                     ['label' => '原子商品', 'icon' => 'fa fa-file-code-o', 'url' => ['/goods']],
                     ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii']],

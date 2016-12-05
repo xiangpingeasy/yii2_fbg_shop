@@ -59,6 +59,16 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             ],
         ];
     }
+    
+    
+    public function actions()
+    {
+        return [
+            'Kupload' => [
+                'class' => 'pjkui\kindeditor\KindEditorAction',//Kindeditor富文本编辑器
+            ]
+        ];
+    }
 
     /**
      * Lists all <?= $modelClass ?> models.

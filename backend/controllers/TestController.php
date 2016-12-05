@@ -29,11 +29,12 @@ class TestController extends Controller
         ];
     }
     
+    
     public function actions()
     {
         return [
             'Kupload' => [
-                'class' => 'pjkui\kindeditor\KindEditorAction',
+                'class' => 'pjkui\kindeditor\KindEditorAction',//Kindeditor富文本编辑器
             ]
         ];
     }
@@ -130,6 +131,4 @@ class TestController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    
-    
 }

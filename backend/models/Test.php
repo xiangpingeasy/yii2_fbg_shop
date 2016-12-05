@@ -31,7 +31,8 @@ class Test extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['test_name', 'test_img', 'test_type_id'], 'required'],
+            [['test_name'], 'required','message'=>'用户名不能为空'],
+            [['test_img', 'test_type_id'], 'required'],
             [['test_desc'], 'string'],
             [['test_is_recommend', 'test_is_best', 'test_type_id'], 'integer'],
             [['test_name'], 'string', 'max' => 16],

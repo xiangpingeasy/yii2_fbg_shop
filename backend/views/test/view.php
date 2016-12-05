@@ -12,30 +12,13 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="test-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2>操作成功！</h2>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->test_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->test_id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?= Html::a(Yii::t('app', '返回列表页'), ['index'], ['class' => 'btn btn-info']) ?>
+        <?= Html::a(Yii::t('app', '点击修改'), ['update', 'id' => $model->test_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', '继续添加'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'test_id',
-            'test_name',
-            'test_img',
-            'test_desc:ntext',
-            'test_is_recommend',
-            'test_is_best',
-            'test_type_id',
-        ],
-    ]) ?>
 
 </div>
