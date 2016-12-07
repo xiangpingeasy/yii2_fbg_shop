@@ -36,12 +36,20 @@ class KindEditor extends InputWidget {
     public $editorType;
     //默认配置
     protected $_options;
+    
+    protected $btnname='btn';
 
+    protected $img_value='';//PING:设置图片src变量
     /**
      * @throws \yii\base\InvalidConfigException
      */
     public function init() {
         $this->id = $this->hasModel() ? Html::getInputId($this->model, $this->attribute) : $this->id;
+        
+        //PING:获取图片src值，先判断是否存在，存在则使用数据库保存的值，不存在则为空字符串
+        $this->img_value= $this->hasModel()?Html::getAttributeValue($this->model, $this->attribute):'';
+
+        
         $this->_options = [
             'fileManagerJson' => Url::to(['Kupload', 'action' => 'fileManagerJson']),
             'uploadJson' => Url::to(['Kupload', 'action' => 'uploadJson']),
@@ -54,6 +62,7 @@ class KindEditor extends InputWidget {
     }
 
     public function run() {
+        $this->btnname= $this->btnname.time().rand(1, 9999). rand(1, 9999);
         $this->registerClientScript();
         if ($this->hasModel()) {
             switch ($this->editorType) {
@@ -70,7 +79,9 @@ class KindEditor extends InputWidget {
 
                     break;
                 case 'image-dialog':
-                    return Html::activeInput('text', $this->model, $this->attribute, ['id' => $this->id]) . '<input type="button" id="imageBtn" value="选择图片" />';
+                    //PING:生成表单时，放置预览图片的标签
+                    //return Html::activeInput('text', $this->model, $this->attribute, ['id' => $this->id]) . '<input type="button" id="'.$this->btnname.'" value="选择图片" /><div id="'.$this->btnname.'_preview"><img width="100px;" src="'.$this->img_value.'"/></div>';
+                    return  Html::activeInput('hidden', $this->model, $this->attribute, ['id' => $this->id]).'<div style="margin:5px 0 5px 5px;"><input type="button" id="'.$this->btnname.'" value="选择图片" /></div><div id="'.$this->btnname.'_preview"><img width="100px;" src="'.$this->img_value.'"/></div>';
 
                     break;
                 case 'file-dialog':
@@ -94,7 +105,7 @@ class KindEditor extends InputWidget {
                     return Html::input('text', $this->id, $this->value, ['id' => $this->id]) . '<input type="button" id="filemanager" value="浏览服务器" />';
                     break;
                 case 'image-dialog':
-                    return Html::input('text', $this->id, $this->value, ['id' => $this->id]) . '<input type="button" id="imageBtn" value="选择图片" />';
+                    return Html::input('text', $this->id, $this->value, ['id' => $this->id]) . '<input type="button" id="'.$this->btnname.'" value="选择图片" /><div id="'.$this->btnname.'_preview"><img src=22"'.$this->value.'"/></div>';
                     break;
                 case 'file-dialog':
                     return Html::input('text', $this->id, $this->value, ['id' => $this->id]) . '<input type="button" id="insertfile" value="选择文件" />';
@@ -213,12 +224,14 @@ EOT;
                                          "fileManagerJson":"{$fileManagerJson}",
                                         
 				});
-				K('#imageBtn').click(function() {
+				K('#{$this->btnname}').click(function() {
 					editor.loadPlugin('image', function() {
 						editor.plugin.imageDialog({
 							imageUrl : K('#{$this->id}').val(),
 							clickFn : function(url, title, width, height, border, align) {
 								K('#{$this->id}').val(url);
+                                                                //PING：当上传图片时，把图片路径设置到预览图上
+                                                                K('#{$this->btnname}_preview img').attr('src',url);
 								editor.hideDialog();
 							}
 						});

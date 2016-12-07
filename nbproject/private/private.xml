@@ -4,11 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/F:/wamp/www/github/yii2_fbg_shop/backend/views/layouts/left.php</file>
+            <file>file:/F:/wamp/www/github/yii2_fbg_shop/backend/views/shop-goods-serial/view.php</file>
             <file>file:/F:/wamp/www/github/yii2_fbg_shop/backend/views/test/_form_1.php</file>
-            <file>file:/F:/wamp/www/github/yii2_fbg_shop/backend/views/test/index_2_模态.php</file>
-            <file>file:/F:/wamp/www/github/yii2_fbg_shop/common/widgets/JsBlock.php</file>
             <file>file:/F:/wamp/www/github/yii2_fbg_shop/backend/views/shop-goods-model/_form.php</file>
-            <file>file:/F:/wamp/www/github/yii2_fbg_shop/backend/controllers/ShopGoodsBrandController.php</file>
+            <file>file:/F:/wamp/www/github/yii2_fbg_shop/backend/views/test/index_2_模态.php</file>
             <file>file:/F:/wamp/www/github/yii2_fbg_shop/backend/views/shop-goods-serial/_form.php</file>
             <file>file:/F:/wamp/www/github/yii2_fbg_shop/backend/controllers/ShopGoodsSerialController.php</file>
             <file>file:/F:/wamp/www/github/yii2_fbg_shop/backend/views/shop-goods-model/_search.php</file>

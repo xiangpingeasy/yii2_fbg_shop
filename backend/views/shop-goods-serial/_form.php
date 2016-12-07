@@ -31,22 +31,36 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'goods_serial_before_price')->textInput(['maxlength' => true])->hint('') ?>
 
-    <?= $form->field($model, 'goods_serial_list_img_pc')->widget('pjkui\kindeditor\Kindeditor',['clientOptions'=>['allowFileManager'=>'true','allowUpload'=>'true'],'editorType'=>'image-dialog']) ?>
+    <?= $form->field($model, 'goods_serial_list_img_pc')->widget('pjkui\kindeditor\Kindeditor',['clientOptions'=>['allowFileManager'=>'true','allowImageUpload'=>'true'],'editorType'=>'image-dialog']) ?>
     
-    <?= $form->field($model, 'goods_serial_list_img_mobile')->widget('pjkui\kindeditor\Kindeditor',['clientOptions'=>['allowFileManager'=>'true','allowUpload'=>'true'],'editorType'=>'image-dialog']) ?>
+    <?= $form->field($model, 'goods_serial_list_img_mobile')->widget('pjkui\kindeditor\Kindeditor',['clientOptions'=>['allowFileManager'=>'true','allowImageUpload'=>'true'],'editorType'=>'image-dialog']) ?>
+
+    
 
 
-    <?= $form->field($model, 'goods_serial_desc_pc')->textarea(['rows' => 6])->hint('') ?>
-
-    <?= $form->field($model, 'goods_serial_desc_mobile')->textarea(['rows' => 6])->hint('') ?>
+    <?= $form->field($model, 'goods_serial_desc_pc')->widget('pjkui\kindeditor\KindEditor',
+    ['clientOptions'=>['allowFileManager'=>'true',
+    'allowUpload'=>'true']]) 
+    ?>
+    
+    <?= $form->field($model, 'goods_serial_desc_mobile')->widget('pjkui\kindeditor\KindEditor',
+    ['clientOptions'=>['allowFileManager'=>'true',
+    'allowUpload'=>'true']]) 
+    ?>
     
     <!--商品分类和品牌联动-->
     <?= $form->field($model, 'goods_category_id')->dropDownList(yii\helpers\ArrayHelper::map(\app\models\ShopGoodsCategory::find()->all(),'goods_cat_id','goods_cat_name'),['prompt'=>'请选择商品分类'])->hint('') ?>
 
-    <?= $form->field($model, 'goods_brand_id')->dropDownList(
-        [],
-        ['prompt' => '选择品牌']
-    ) ?>
+
+    <?php
+        if($model->goods_brand_id==''){
+        echo $form->field($model, 'goods_brand_id')->dropDownList(
+            [],
+            ['prompt' => '选择品牌']
+        );}else{
+            echo $form->field($model, 'goods_brand_id')->dropDownList(yii\helpers\ArrayHelper::map(\app\models\ShopGoodsBrand::findAll(['goods_cat_id'=>$model->goods_category_id]),'goods_brand_id','goods_brand_name'),['prompt'=>'选择品牌'])->hint('');
+        }
+                ?>
     <!--/商品分类和品牌联动-->
    
     
@@ -81,7 +95,7 @@ use yii\widgets\ActiveForm;
     <div class="form-group">
         <label class="col-lg-1"></label>
         <div class="col-lg-11">
-            <?= Html::submitButton($model->isNewRecord ? Yii::t('app', '添加') : Yii::t('app', '修改'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            <?= Html::submitButton($model->isNewRecord ? Yii::t('app', '保存 & 进入下一步') : Yii::t('app', '保存修改 & 进入下一步'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         </div>
     </div>
 
@@ -101,6 +115,7 @@ use yii\widgets\ActiveForm;
                 dataType: 'json',
                 data: {type: $(this).val()},
                 success: function (msg) {
+                    html += '<option value="">选择品牌</option>';
                     $.each(msg, function (key,val) {
                         html += '<option value="' + val.goods_brand_id + '">' + val.goods_brand_name + '</option>';
                     });
@@ -112,3 +127,5 @@ use yii\widgets\ActiveForm;
 </script>
 <?php \common\widgets\JsBlock::end()?>
 <!--/商品分类和品牌联动-->
+
+
